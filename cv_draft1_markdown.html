@@ -90,8 +90,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -100,14 +106,74 @@ button.code-folding-btn:focus {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -121,68 +187,65 @@ $(document).ready(function () {
 </div>
 
 
-<center>
-<h1>
-<strong>ERIC ROBERT HAGEN</strong>
-</h1>
-</center>
-<center>
-<h4>
-<strong>Curriculum Vitae</strong>
-</h4>
-</center>
+<div id="eric-robert-hagen-curriculum-vitae" class="section level1">
+<h1><strong>ERIC ROBERT HAGEN: Curriculum Vitae</strong></h1>
 <div id="personal-information" class="section level5">
 <h5><strong>Personal Information</strong></h5>
-<p>Addresses:             Department of Biological Sciences<br />
-                               University of Arkansas<br />
-                               850 W Dickson Street<br />
-                               Science and Engineering Hall 715<br />
-                               Fayetteville, AR 72701-1201 </br> Telephone:             407-948-7143<br />
-Email:                     <a href="mailto:erhagen@uark.edu">erhagen@uark.edu</a><br />
-Web pages:            <a href="https://www.jeremybeaulieu.org">Jeremy Beaulieu’s Lab Website</a><br />
-Born:                      Rochester, NY; 5 June 1996<br />
-<br></p>
+<p><em>Addresses</em>: Department of Biological Sciences, University of Arkansas, 850 W Dickson Street, Science and Engineering Hall 715; Fayetteville, AR 72701-1201<br />
+<em>Telephone</em>: 407-948-7143<br />
+<em>Email</em>: <a href="mailto:erhagen@uark.edu">erhagen@uark.edu</a><br />
+<em>Web pages</em>: <a href="https://www.jeremybeaulieu.org">Jeremy Beaulieu’s Lab Website</a><br />
+<em>Born</em>: Rochester, NY; 5 June 1996</p>
 </div>
 <div id="education" class="section level5">
 <h5><strong>Education</strong></h5>
-<p>Ph.D., University of Arkansas, Biological Sciences (expected 2023)<br />
-           Advisor: Dr. Jeremy M. Beaulieu</p>
-<p>B.A., Wesleyan University, Biology and Earth &amp; Environmental Sciences (honors, 2018)<br />
-           Senior Thesis: <em>Examining “Small Leaf Bias” in the Hell Creek and Fort Union Formations Using Secondary Vein Scaling</em><br />
-           Advisor: Dr. Dana L. Royer </br><br></p>
+<p>Ph.D., University of Arkansas, Biological Sciences (expected 2023)</p>
+<ul>
+<li>Advisor: Dr. Jeremy M. Beaulieu</li>
+</ul>
+<p>B.A., Wesleyan University, Biology and Earth &amp; Environmental Sciences (honors, 2018)</p>
+<ul>
+<li>Senior Thesis: <em>Examining “Small Leaf Bias” in the Hell Creek and Fort Union Formations Using Secondary Vein Scaling</em><br />
+</li>
+<li>Advisor: Dr. Dana L. Royer</li>
+</ul>
 </div>
 <div id="professional-experience" class="section level5">
 <h5><strong>Professional Experience</strong></h5>
-<p>2018-2023             Distinguished Doctoral Fellow and Teaching Assistant             Department of Biological Sciences, University of Arkansas </br><br></p>
+<p>2018-2023: Distinguished Doctoral Fellow and Teaching Assistant</p>
+<ul>
+<li>Department of Biological Sciences, University of Arkansas</li>
+</ul>
 </div>
 <div id="honors-awards-and-funding" class="section level5">
 <h5><strong>Honors, Awards, and Funding</strong></h5>
-<p>2018-2022             $22,000 (yearly for 4 years)             Distinguished Doctoral Fellowship, University of Arkansas</p>
-<p>2017                      $4,000                                              College of the Environment Summer Internship, Wesleyan University</p>
-<p>2016                      $4,000                                              Research in the Sciences Summer Fellowship, Wesleyan University </br><br></p>
+<p>2018-2022: $22,000 (yearly for 4 years), Distinguished Doctoral Fellowship, University of Arkansas</p>
+<p>2017: $4,000, College of the Environment Summer Internship, Wesleyan University</p>
+<p>2016: $4,000, Research in the Sciences Summer Fellowship, Wesleyan University</p>
 </div>
 <div id="teaching-experience" class="section level5">
 <h5><strong>Teaching Experience</strong></h5>
-<p>Spring 2019            Teaching Assistant: BIOL 4153, Biology of Global Change (University of Arkansas)</p>
-<p>Fall 2018                 Teaching Assistant: BIOL 1541, Principles of Biology Lab (University of Arkansas) </br><br></p>
+<p>Spring 2019: Teaching Assistant, BIOL 4153, Biology of Global Change (University of Arkansas)</p>
+<p>Fall 2018: Teaching Assistant, BIOL 1541, Principles of Biology Lab (University of Arkansas)</p>
 </div>
 <div id="research-interests" class="section level5">
 <h5><strong>Research Interests</strong></h5>
-<p>Evolutionary biology, phylogenetics, paleobotany, climate change, philosophy of biology </br><br></p>
+<p>Evolutionary biology, phylogenetics, paleobotany, climate change, philosophy of biology</p>
 </div>
 <div id="membership-in-professional-societies" class="section level5">
 <h5><strong>Membership in Professional Societies</strong></h5>
 <p>Society for the Study of Evolution<br />
-Botanical Society of America </br><br></p>
+Botanical Society of America</p>
 </div>
 <div id="volunteering-and-outreach" class="section level5">
 <h5><strong>Volunteering and Outreach</strong></h5>
-<p>Tutor, Wesleyan Center for Prison Education, 2015-2016: Tutored students at York Correctional Institution in Niantic, CT in math and writing </br><br></p>
+<p>Tutor, Wesleyan Center for Prison Education, 2015-2016: Tutored students at York Correctional Institution in Niantic, CT in math and writing</p>
 </div>
 <div id="peer-reviewed-publications" class="section level5">
 <h5><strong>Peer-Reviewed Publications</strong></h5>
-<p>[1] <strong>Hagen, E.R.</strong>, Royer, D.L., Moye, R.A., and Johnson, K.R., 2019, No large bias within species between the reconstructed areas of complete and fragmented fossil leaves: PALAIOS, v. 34, no. 1, p. 43-48. </br><br></p>
-<p><em>February 2019</em> </br></p>
+<p>[1] <strong>Hagen, E.R.</strong>, Royer, D.L., Moye, R.A., and Johnson, K.R., 2019, No large bias within species between the reconstructed areas of complete and fragmented fossil leaves: PALAIOS, v. 34, no. 1, p. 43-48.</p>
+<p><em>February 2019</em></p>
+</div>
 </div>
 
 
