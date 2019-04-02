@@ -28,8 +28,8 @@ for line in gff:
 	line = line.rstrip("\n")
 	#[sequence, source, feature, start, end, length, strand, phase, attributes] = line.split("\t")
 	fields = line.split("\t")
-	start = int(fields[3])
-	stop = int(fields[4])
+	start = int(fields[3]) - 1
+	stop = int(fields[4]) - 1
 	output = fsa2[start:stop]
 	startsandstops.append(output)
 	print("Sequence", seqnumber, "~", get_GC_content(output))
