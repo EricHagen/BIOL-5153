@@ -21,17 +21,17 @@ gff_path = "/Users/erichagen1/Desktop/University_of_Arkansas_Stuff/Spring_2019_S
 fsa_file = fsa_path + args.dna_file
 gff_file = gff_path + args.info_file
 
-#Read in watermelon fsa & gff
-with open(fsa_file) as open_fsa:
-    fsa = open_fsa.read().splitlines()
+
+#USE BIOPYTHON TO PARSE THE FASTA FILE
+from Bio import SeqIO
+print("\nGENOME:")
+for record in SeqIO.parse(fsa_file, "fasta"):
+	print(record.id)
+	print(repr(record.seq))
+	print(len(record))
+
+#Read in watermelon fsa & gff files
 gff = open(gff_file, "r")
-
-#Print just the fsa genome
-print("\nGENOME:\n")
-lines = fsa[1:]
-print(lines)
-
-#Reopen the fsa file for use in the second part:
 fsa2 = open(fsa_file).read()
 
 #Write a function to calculate GC content
