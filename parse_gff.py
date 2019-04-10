@@ -1,6 +1,7 @@
 #! usr/bin/env python3
 
 import argparse
+import csv
 
 #Create an argument parser object ('parser') that will hold all the information
 #necessary to parse the command line
@@ -21,38 +22,39 @@ gff_path = "/Users/erichagen1/Desktop/University_of_Arkansas_Stuff/Spring_2019_S
 fsa_file = fsa_path + args.dna_file
 gff_file = gff_path + args.info_file
 
+#Open gff file
+with open(gff_file, 'r') as gff:
 
-#USE BIOPYTHON TO PARSE THE FASTA FILE
-from Bio import SeqIO
-print("\nGENOME:")
-for record in SeqIO.parse(fsa_file, "fasta"):
-	print(record.id)
-	print(repr(record.seq))
-	print(len(record))
+	#Create a csv reader object to open the gff file
+	csvreader = csv.reader(gff, delimiter = "\t")
 
-#Read in watermelon fsa & gff files
-gff = open(gff_file, "r")
-fsa2 = open(fsa_file).read()
+	#Import the SeqIO module & open the fsa file with it
+	from Bio import SeqIO
+	fsa = SeqIO.read(fsa_file, 'fasta')
 
-#Write a function to calculate GC content
-def get_GC_content(sequence, sigfigs = 2):
-	g_content = sequence.count('G')
-	c_content = sequence.count('C')
-	gc_content = (g_content + c_content) / len(sequence)
-	return round(gc_content, sigfigs)
+	#Print the fasta file
+	print("\nGENOME:")
+	print(fsa)
 
-#Parse files & extract all features of genome
-print("\nGC CONTENT OF SEQUENCES:")
-seqnumber = 1
-for line in gff:
-	line = line.rstrip("\n")
-	#[sequence, source, feature, start, end, length, strand, phase, attributes] = line.split("\t")
-	fields = line.split("\t")
-	start = int(fields[3]) - 1
-	stop = int(fields[4]) - 1
-	output = fsa2[start:stop]
-	name = fields[8]
-	name_characters = name[0:10]
-	print("Sequence", seqnumber, "a.k.a. " + name_characters + " ~", get_GC_content(output))
-	seqnumber = seqnumber + 1
+	#Write a function to calculate GC content
+	def get_GC_content(sequence, sigfigs = 2):
+		g_content = sequence.count('G')
+		c_content = sequence.count('C')
+		gc_content = (g_content + c_content) / len(sequence)
+		return round(gc_content, sigfigs)
+
+	#Get GC content values
+	print("\nGC CONTENT OF SEQUENCES:")
+	seqnumber = 1
+	fullsequence = fsa.seq
+	for row in csvreader:
+		start = int(row[3]) - 1
+		stop = int(row[4]) - 1
+		output = fullsequence[start:stop]
+		name = row[8]
+		name_characters = name[0:10]
+		print("Sequence", seqnumber, "a.k.a. " + name_characters + " ~", get_GC_content(output))
+		seqnumber = seqnumber + 1
+
+#Close the gff file
 gff.close()
