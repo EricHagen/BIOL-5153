@@ -3,9 +3,10 @@
 import re
 
 #Regular expression to match every variant of a name (HOMEWORK ASSIGNMENT 8):
-names = 'katharine, Katherine, Catheryn, Cathryn, Kathryn, Katherine, Catherine, Kathrin'
-print("This is my list of names: " + names)
+print("\nThis is my story:\n")
+story = '"Katherine went to the concert to see her favorite band, Catheryn and the Cathryn’s. She ran into her friend Kathryn, who introduced Katherine to her friend, Catherine. Together, they enjoyed the concert while texting inaudible snippets to their mutual friends, Kathrin and katharine."'
+print(story)
 pattern = "[KC]ath[ae]*r[iy]ne*"
-print("\nThese are my matches: ")
-for match in re.finditer(pattern, names, re.I):
-	print(match.group())
+print("\nThese are my matches:")
+matches = re.findall(pattern, story, re.I)
+print(matches)
