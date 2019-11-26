@@ -3,6 +3,7 @@
 import argparse
 import csv
 from Bio import SeqIO
+from collections import defaultdict
 
 #Set paths to files to run
 fsa_path = "/Users/erichagen1/Desktop/University_of_Arkansas_Stuff/Spring_2019_Semester/Practical_Programming/watermelon_files/"
@@ -60,7 +61,7 @@ def print_GC_content(fsa, csvreader):
 		output = fsa[start:stop]
 		name = row[8]
 		name_characters = name[0:10]
-		print("Sequence", seqnumber, "a.k.a. " + name_characters + " ~", get_GC_content(output))
+		print("Sequence", seqnumber, "a.k.a. " + name_characters + " ~ " + "GC content of: ", get_GC_content(output))
 		if row[6] == "-":
 			start = int(row[3]) - 1
 			stop = int(row[4]) - 1
@@ -90,3 +91,56 @@ gff_file = gff_path + args.info_file
 #Execute the program by calling the main function
 if __name__ == "__main__":
 	main()
+
+
+
+
+
+
+
+
+#4-29 class stuff
+
+#Dictionary to hold CDS sequences, key = gene name, value = dictionary #2 where key = exon number, value = the sequence
+coding_seqs = defaultdict(dict)
+
+if not line:
+	continue
+else:
+	begin = int(line[3]) - 1
+	end = int(line[4])
+	strand = line[6]
+	feature = line[2]
+	attribute = line[8]
+	species = line[0]
+feature_sequence = genome[begin:end]
+gene_name = exon_info[0].split()[1]
+exon_number = exon_info[0].split()[]
+exon_info = attributes.split(" ; ")
+if len(exon_info[0].split()) > 2:
+	exon_number = exon_info[0].split()[-1]
+	if gene_name in coding_seqs:
+		#store the coding seq for this exon
+	else:
+		#first time encountering this gene, so declare the dictionary for it
+		coding_seqs[gene_name] = {}
+		#store the coding seq for this exon
+		coding_seqs[gene_name][exon_number] = feature_sequence 
+else:
+	print('>' + line[0].replace(' ', '_') + '_' + gene_name)
+	print(feature_sequence)
+
+#done reading the GFF file, loop over coding_seqs to print the CDS sequence
+#gene = gene name, exons = dictionary of exon seqs, key = exon_num, value = exon_seq
+for gene, exons in coding_seqs.items():
+	#make a variable to hold the concatenated CDS sequence
+	cds_for_this_gene = ''
+	#loop over all the exons for this particular gene. IMPORTANT: need to sort the exons first
+	#print the fasta header for this gene
+	print('>', line[0].replace(' ', '_') + '_' + gene)
+	for exon_num, exon_seq in sorted(exons.items()):
+		#print(gene, exon_num, exon_seq)
+		cds_for_this_gene += exon_seq
+	#print the CDS sequence for this gene
+	print(cds_for_this_gene)
+
